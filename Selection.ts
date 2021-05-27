@@ -1,4 +1,4 @@
-import { Person } from "./GeneratePopulation";
+import { Person } from "./Models/Person";
 
 export function selectNumberRandomly(people: Person[], amount: number): [Person[], Person[]]  {
     shuffle(people);
@@ -15,8 +15,7 @@ function shuffle(array: any[]) {
 }
 
 export function selectMostCompetent(people: Person[], amount: number): [Person[], Person[]]  {
-    people.sort((a, b) => (a.Competence < b.Competence) ? 1 : -1)
-    // let excluded_people = people.length - amount;
+    people.sort((a, b) => (a.$Competence < b.$Competence) ? 1 : -1)
     let most_compentent = people.splice(0, amount);
     return [most_compentent, people];
 }
