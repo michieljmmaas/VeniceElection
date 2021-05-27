@@ -1,0 +1,51 @@
+// Setup: 
+
+// Aantal Familie
+// Aantal leden in een Familie
+// Trouwheid aan je familie
+// Competentie // Charisma / 
+
+// Gekwalificeerde Meerderheid: 
+// > 50%, / Alle Families kiesen
+
+// Totaal aantal mensen in de Hoge Raad: 500
+// Stappen:
+// 1: 500 > 30 (Random)
+// 2: 30 > 9 (Random)
+// 3: 9 > 40 (Gekwalificeerde meerheid) -> Minstens 7 stemmen
+// 4: 40 > 12 (Random)
+// 5: 12 > 25 (Cooptatie) minstens 9 stemmen
+// 6: 25 > 9 (Random)
+// 7: 9 > 45 (Cooptatie) minstens 7 stemmen
+// 8: 45 > 11 (Random)
+// 9: 11 > 41 (Cooptatie) Minstens 9 stemmen
+// 10: 41 > 1 (Conclaaf)
+
+// Conclaaf:
+// Elke 41 schrijft zijn stem uit
+// Lijst van Unique members
+// Alle Uniques in een urn
+// Trekt 1 eruit -> Over over hem gediscussierd
+// Dan wordt er gestemd, 525 stemmen ndoig, dan is het DOge
+// Anders door naar de volgende
+// Daarna voor de Hele Great Council, en een simple majorite nodig
+
+
+
+// Niet meer dan 1 per familie
+
+// Hypothese Populairer kandaiaten winnen, terwijl het toch de kansen bood aan minderheden, en gecorumpeerd stemgedrag kon corrigeren
+
+// Naast andere lemetnen liggen
+// Enkele stem ronde met verhouding van trouwheid / capabiltieit
+// Alleen trouw zijn / Alleen capabel zijn
+// Super Majority vote 64% (zelf in te stellen)
+// First past the post
+// Ranked Choice voting
+
+
+// Factoren beinveloden:
+// Aantal mensens in de raad, aantal families
+// Regel dat je niet met de zelfde familie mag zitten
+// Nieuwe gekozen mensne mogen ookstemmen
+// Mag op je zelf stemmen
