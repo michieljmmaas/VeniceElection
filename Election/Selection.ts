@@ -1,4 +1,4 @@
-import { Person } from "./Models/Person";
+import { Person } from "../Models/Person";
 
 export function selectNumberRandomly(people: Person[], amount: number): [Person[], Person[]]  {
     shuffle(people);
@@ -7,7 +7,7 @@ export function selectNumberRandomly(people: Person[], amount: number): [Person[
     return [not_selected_people, people];
 }
 
-function shuffle(array: any[]) {
+export function shuffle(array: any[]) {
     for (let i = array.length; i; i--) {
         let j = Math.floor(Math.random() * i);
         [array[i - 1], array[j]] = [array[j], array[i - 1]];

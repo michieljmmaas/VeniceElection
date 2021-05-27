@@ -1,6 +1,6 @@
-import { Person } from "./Models/Person";
-import { Family, FamilyRelation } from "./Models/Family";
-import { Congres } from "./Models/Congres";
+import { Person } from "../Models/Person";
+import { Family, FamilyRelation } from "../Models/Family";
+import { Congres } from "../Models/Congres";
 
 
 // Love For Family

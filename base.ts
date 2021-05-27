@@ -1,6 +1,5 @@
 import { Election } from "./Election/Election";
-import { growCongresWithMostCompetentToNumber, thinSelectedRandomlyToNumber } from "./ElectionProcess";
-import { createGeneralCongres } from "./GeneratePopulation";
+import { createGeneralCongres } from "./Setup/CongresGenerator";
 
 
 let generalCongres = createGeneralCongres(500, 50);
