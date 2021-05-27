@@ -14,4 +14,11 @@ function shuffle(array: any[]) {
     }
 }
 
+export function selectMostCompetent(people: Person[], amount: number): [Person[], Person[]]  {
+    people.sort((a, b) => (a.Competence < b.Competence) ? 1 : -1)
+    // let excluded_people = people.length - amount;
+    let most_compentent = people.splice(0, amount);
+    return [most_compentent, people];
+}
+
 // Electoral Group, push van een naar de ander

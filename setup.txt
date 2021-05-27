@@ -49,3 +49,6 @@
 // Regel dat je niet met de zelfde familie mag zitten
 // Nieuwe gekozen mensne mogen ookstemmen
 // Mag op je zelf stemmen
+
+// Familie, 
+// Haat voor andere families / trouw aan ander
