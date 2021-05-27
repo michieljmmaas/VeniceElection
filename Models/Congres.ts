@@ -19,4 +19,16 @@ export class Congres {
         });
       }
 
+      suggestPersonForSelection(person_to_propose: Person, minium_amount_of_votes: number) {
+        let counter = 0;
+        this.selectedPeople.forEach(person => {
+          if(person.wouldVoteForPerson(person_to_propose)) {
+            counter++;
+          }
+        })
+
+        return counter >= minium_amount_of_votes;
+    }
+
+
 }

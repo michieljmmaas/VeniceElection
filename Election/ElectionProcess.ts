@@ -1,6 +1,6 @@
 import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
-import { selectMostCompetent, selectNumberRandomly, shuffle } from "./Selection";
+import { selectByVoting, selectMostCompetent, selectNumberRandomly, shuffle, sortPeopleByCompetence } from "./Selection";
 
 
 
@@ -32,6 +32,15 @@ export function selectRandomlyAndRemoveFamily(congres: Congres, amount: number) 
 export function thinSelectedRandomlyToNumber(congres: Congres, amount: number) {
     let [not_selected_people, selected_people] = selectNumberRandomly(congres.selectedPeople, amount);
     congres.notSelectedPeople = congres.notSelectedPeople.concat(not_selected_people)
+}
+
+export function growByVotingForMembers(congres: Congres, amount: number, minium_amount_of_votes_needed: number) {
+    let currentAmountSelected = congres.selectedPeople.length;
+    let additionalPeopleNeeded = amount - currentAmountSelected;
+
+
+    selectByVoting(congres, additionalPeopleNeeded, minium_amount_of_votes_needed);
+    // congres.selectedPeople = congres.selectedPeople.concat(selectedPeople);
 }
 
 export function growCongresWithMostCompetentToNumber(congres: Congres, amount: number) {

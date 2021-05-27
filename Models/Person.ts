@@ -3,15 +3,17 @@
 // Hij strict hij is op Effectivenes
 // Charisma
 
+// Threshold voor accepteren om te stemmen
+
 import { Family } from "./Family";
 
 export class Person {
     private Id: Number;
-    private Competence: Number;
+    private Competence: number;
     private Family: Family;
 
 
-	constructor($Id: Number, $Competence: Number, $Family: Family) {
+	constructor($Id: Number, $Competence: number, $Family: Family) {
 		this.Id = $Id;
 		this.Competence = $Competence;
 		this.Family = $Family;
@@ -30,9 +32,9 @@ export class Person {
 
     /**
      * Getter $Competence
-     * @return {Number}
+     * @return {number}
      */
-	public get $Competence(): Number {
+	public get $Competence(): number {
 		return this.Competence;
 	}
 
@@ -48,7 +50,10 @@ export class Person {
 
 
     wouldVoteForPerson(other_person: Person): boolean {
-        return true;
+        let other_person_merit = other_person.$Competence;
+        let family_favorability = this.Family.getFavorabilityOfFamily(other_person.$Family);
+
+        return (other_person_merit + family_favorability) > 750;
     }
 
     printData() {

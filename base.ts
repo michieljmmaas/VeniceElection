@@ -12,7 +12,8 @@ console.log("Most Compentent")
 most_compentent.printData();
 
 
-let election = new Election(generalCongres, false);
+// let election = new Election(generalCongres, false);
+let election = new Election(generalCongres, true);
 let winner = election.runElection()
 console.log("Winner")
 winner.printData()

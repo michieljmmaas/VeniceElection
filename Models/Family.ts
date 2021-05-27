@@ -6,7 +6,7 @@
 
 // Vriendschappen tussen Families, aversy is nu random
 export interface FamilyRelation {
-    favorability: Number;
+    favorability: number;
 }
 
 
@@ -30,12 +30,12 @@ export class Family {
 	}
 
 
-    // getFavorabilityOfFamily(family: Family): Number {
-    //     if(this.FamiliyRelations.has(family.Id)) {
-    //         return this.FamiliyRelations.get(family.Id).favorability;
-    //     } else {
-    //         console.log("FAMILY NOT FOUND")
-    //         return 0;
-    //     }
-    // }
+    public getFavorabilityOfFamily(family: Family): number {
+        if(this.FamiliyRelations.has(family.Id)) {
+            return this.FamiliyRelations.get(family.Id).favorability;
+        } else {
+            console.log("FAMILY NOT FOUND")
+            return 0;
+        }
+    }
 }
