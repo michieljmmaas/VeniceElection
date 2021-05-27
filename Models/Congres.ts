@@ -12,13 +12,6 @@ export class Congres {
         this.Families = Families;
       }
 
-      printData() {
-        console.log("Congres Data: ")
-        this.selectedPeople.forEach(person =>{
-            person.printData()
-        });
-      }
-
       suggestPersonForSelection(person_to_propose: Person, minium_amount_of_votes: number) {
         let counter = 0;
         this.selectedPeople.forEach(person => {

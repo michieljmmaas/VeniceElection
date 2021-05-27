@@ -23,11 +23,13 @@ export function selectByVoting(congres: Congres, new_people_needed: number, mini
     sortPeopleByCompetence(congres.notSelectedPeople);
     // shuffle(congress.notSelectedPeople); // TODO welke methodes zijn hier
 
+    let cloned_not_selected = [...congres.notSelectedPeople];
+
     let newly_selected_people: Person[] = [];
     let not_selected_people: Person[] = [];
 
     while(newly_selected_people.length < new_people_needed) { // TODO pas op Infinite Loops
-        let person_to_propose = congres.notSelectedPeople.shift();
+        let person_to_propose = cloned_not_selected.shift();
         let proposed_person_is_accepted = congres.suggestPersonForSelection(person_to_propose, minium_amount_of_votes);
         if(proposed_person_is_accepted) {
             newly_selected_people.push(person_to_propose);
@@ -36,8 +38,11 @@ export function selectByVoting(congres: Congres, new_people_needed: number, mini
         }
     }
 
-    congres.notSelectedPeople = congres.notSelectedPeople.concat(not_selected_people)
-    congres.selectedPeople = congres.notSelectedPeople.concat(newly_selected_people)
+    let temp_not_selected_people = cloned_not_selected.concat(not_selected_people); 
+    let temp_new_total_selected = congres.selectedPeople.concat(newly_selected_people)
+
+    congres.notSelectedPeople = temp_not_selected_people;
+    congres.selectedPeople = temp_new_total_selected;
 }
 
 export function selectMostCompetent(people: Person[], amount: number): [Person[], Person[]]  {

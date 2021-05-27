@@ -11,10 +11,10 @@ export interface FamilyRelation {
 
 
 export class Family {
-    private Id: Number;
+    private Id: number;
     private FamiliyRelations: Map<Number, FamilyRelation>;
 
-	constructor($Id: Number, $FamiliyRelations: Map<Number, FamilyRelation>) {
+	constructor($Id: number, $FamiliyRelations: Map<number, FamilyRelation>) {
 		this.Id = $Id;
 		this.FamiliyRelations = $FamiliyRelations;
 	}
@@ -23,9 +23,9 @@ export class Family {
 
     /**
      * Getter $Id
-     * @return {Number}
+     * @return {number}
      */
-	public get $Id(): Number {
+	public get $Id(): number {
 		return this.Id;
 	}
 

@@ -43,6 +43,33 @@ export function growByVotingForMembers(congres: Congres, amount: number, minium_
     // congres.selectedPeople = congres.selectedPeople.concat(selectedPeople);
 }
 
+// Iedereen kiest beste
+export function selectBestPerson(selected_people: Person[]): Person {
+
+    console.log(selected_people.length)
+
+
+    let votes: Person[] = [];
+
+    selected_people.forEach(person => {
+        // let best_person = person.voteForBestPerson(selected_people);
+        // // best_person.printData(); 
+        votes.push(person.voteForBestPerson(selected_people));
+    });
+
+
+    return mode(votes);
+
+
+}
+
+function mode(arr: Person[]): Person {
+    return arr.sort((a, b) =>
+        arr.filter(v => v === a).length
+        - arr.filter(v => v === b).length
+    ).pop();
+}
+
 export function growCongresWithMostCompetentToNumber(congres: Congres, amount: number) {
     let currentAmountSelected = congres.selectedPeople.length;
     let additionalPeopleNeeded = amount - currentAmountSelected;

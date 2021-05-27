@@ -13,14 +13,14 @@ import { Congres } from "../Models/Congres";
 
 
 
-export function createGeneralCongres(number_of_people: Number, number_of_families: Number): Congres {
+export function createGeneralCongres(number_of_people: number, number_of_families: number): Congres {
     let families = createFamilies(number_of_families);
     let people = createPeople(number_of_people, families);
     return new Congres(people, [], families);
 }
 
 
-function createPeople(number_of_people: Number, families: Family[]): Person[] {
+function createPeople(number_of_people: number, families: Family[]): Person[] {
     let people = []
 
     for (let i = 0; i < number_of_people; i++) {
@@ -32,7 +32,7 @@ function createPeople(number_of_people: Number, families: Family[]): Person[] {
     return people;
 }
 
-function createPerson(id: Number, family: Family): Person {
+function createPerson(id: number, family: Family): Person {
     let random_competence = Math.floor(Math.random() * 1001);
     return new Person(id, random_competence, family);
 }
@@ -46,7 +46,7 @@ function createPerson(id: Number, family: Family): Person {
 
 // TODO Name Generator for Families. 
 // Gebruik dit ook bij Hue
-function createFamilies(number_of_families: Number): Family[] {
+function createFamilies(number_of_families: number): Family[] {
     let families = [];
 
     for (let i = 0; i < number_of_families; i++) {
@@ -58,8 +58,8 @@ function createFamilies(number_of_families: Number): Family[] {
 
 
 
-function createFamily(id: Number, total_families: Number): Family {
-    let family_relations: Map<Number, FamilyRelation>  = new Map();
+function createFamily(id: number, total_families: Number): Family {
+    let family_relations: Map<number, FamilyRelation>  = new Map();
     
     // TODO Self Hate/Love
     for (let i = 0; i < total_families; i++) {
