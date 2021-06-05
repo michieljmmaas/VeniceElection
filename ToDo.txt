@@ -1,0 +1,27 @@
+Big:
+Frontend Maken
+Logger meegeven die bijhoudt wat er veranderd
+Noise Function implementeren voor meer randomness
+
+
+
+Aan te passen paramters:
+- Maximaal 1 per Familie option
+- Aantal Families
+- Sliders voor selection thresshold
+- Selection Function
+- Random uitbreiden / Random krimpen
+
+Insights:
+- Wie zijn eruit geloot
+- Wie zijn er bij gekozen
+- Familie Relaites
+- Stats van personage
+- Wie is het meest terug gestemd
+- Wie is het meest Capabel, over de verschillende stappen
+
+Verder:
+- Guilds Maken
+- Name Generator
+- Logo Generator
+- Kleuren Generator
