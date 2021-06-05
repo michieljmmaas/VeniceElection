@@ -45,15 +45,9 @@ export function growByVotingForMembers(congres: Congres, amount: number, minium_
 
 // Iedereen kiest beste
 export function selectBestPerson(selected_people: Person[]): Person {
-
-    console.log(selected_people.length)
-
-
     let votes: Person[] = [];
 
     selected_people.forEach(person => {
-        // let best_person = person.voteForBestPerson(selected_people);
-        // // best_person.printData(); 
         votes.push(person.voteForBestPerson(selected_people));
     });
 

@@ -14,10 +14,10 @@ export class Family {
     private Id: number;
     private FamiliyRelations: Map<Number, FamilyRelation>;
 
-	constructor($Id: number, $FamiliyRelations: Map<number, FamilyRelation>) {
-		this.Id = $Id;
-		this.FamiliyRelations = $FamiliyRelations;
-	}
+    constructor($Id: number, $FamiliyRelations: Map<number, FamilyRelation>) {
+        this.Id = $Id;
+        this.FamiliyRelations = $FamiliyRelations;
+    }
 
 
 
@@ -25,13 +25,13 @@ export class Family {
      * Getter $Id
      * @return {number}
      */
-	public get $Id(): number {
-		return this.Id;
-	}
+    public get $Id(): number {
+        return this.Id;
+    }
 
 
     public getFavorabilityOfFamily(family: Family): number {
-        if(this.FamiliyRelations.has(family.Id)) {
+        if (this.FamiliyRelations.has(family.Id)) {
             return this.FamiliyRelations.get(family.Id).favorability;
         } else {
             console.log("FAMILY NOT FOUND")

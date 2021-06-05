@@ -25,17 +25,17 @@ export class Election {
 
         console.log("2: 30 > 9 (Random)")
         thinSelectedRandomlyToNumber(this.congres, 9)
-        this.printData();
+        this.printData(); 
 
         console.log("3: 9 > 40 (Gekwalificeerde meerheid) -> Minstens 7 stemmen")
         growByVotingForMembers(this.congres, 40, 7)
         this.printData();
 
         console.log("2: 30 > 9 (Random)")
-        thinSelectedRandomlyToNumber(this.congres, 12)
+        thinSelectedRandomlyToNumber(this.congres, 9)
         this.printData();
 
-        console.log("5: 12 > 25 (Cooptatie) minstens 9 stemmen")
+        console.log("5: 9 > 25 (Cooptatie) minstens 9 stemmen")
         growByVotingForMembers(this.congres, 25, 9)
         this.printData();
 
