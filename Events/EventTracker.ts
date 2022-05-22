@@ -8,15 +8,34 @@ export class EventTracker {
     }
    
 	constructor() {
+        this._events = [];
 	}
+
+    print(): void {
+        this._events.forEach(event => {
+            event.print();
+        })
+    }
+
+
+
+
+    public reset(): void {
+        this._events = [];
+    }
+
+    public endStep(): void {
+        ///
+    }
 
 
     public addEvent(event: ElectionEvent): void {
-        this.events.push(event);
+        this._events.push(event);
     }
 }
 
 export interface ElectionEvent {
+    print(): void;
     getStep(): number;
     getPerson(): Person;
     getName(): string;

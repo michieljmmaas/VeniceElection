@@ -1,3 +1,6 @@
+import { CoOptEvent } from './../Events/CoOptedEvent';
+import { KickRandomEvent } from './../Events/KickRandomEvent';
+import { EventTracker } from "../Events/EventTracker";
 import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
 import { selectMostCompetent, selectNumberRandomly, shuffle } from "./Selection";
@@ -29,15 +32,30 @@ export function selectRandomlyAndRemoveFamily(congres: Congres, amount: number) 
 
 
 // TODO zo houden met clonen en dan resetten
-export function thinSelectedRandomlyToNumber(congres: Congres, amount: number) {
+export function thinSelectedRandomlyToNumber(congres: Congres, eventTracker: EventTracker, amount: number) {
     let [not_selected_people, selected_people] = selectNumberRandomly(congres.selectedPeople, amount);
+    
+    not_selected_people.forEach(person => {
+        let kicked_randomly = new KickRandomEvent(person, 0)
+        eventTracker.addEvent(kicked_randomly);
+    })
+
+
     congres.notSelectedPeople = congres.notSelectedPeople.concat(not_selected_people)
 }
 
-export function growCongresWithMostCompetentToNumber(congres: Congres, amount: number) {
+// Add Family Bias
+
+export function growCongresWithMostCompetentToNumber(congres: Congres, eventTracker: EventTracker, amount: number) {
     let currentAmountSelected = congres.selectedPeople.length;
     let additionalPeopleNeeded = amount - currentAmountSelected;
 
     let [most_compentent, not_selected_people] = selectMostCompetent(congres.notSelectedPeople, additionalPeopleNeeded);
+
+    most_compentent.forEach(person => {
+        let coopt_event = new CoOptEvent(person, 0)
+        eventTracker.addEvent(coopt_event);
+    })
+
     congres.selectedPeople = congres.selectedPeople.concat(most_compentent);
 }

@@ -1,3 +1,4 @@
+import { EventTracker } from './Events/EventTracker';
 import { Family } from './Models/Family';
 import { Election } from "./Election/Election";
 import { Person } from "./Models/Person";
@@ -10,20 +11,24 @@ const most_compentent = generalCongres.selectedPeople.reduce(function (prev, cur
     return (prev.$Competence > current.$Competence) ? prev : current
 }) //returns object
 
-console.log("Most Compentent")
-most_compentent.printData();
+// console.log("Most Compentent")
+// most_compentent.printData();
 
 let winners: Person[] = [];
 
+let eventTracker = new EventTracker();
+
 for (let i = 0; i < 25; i++) {
-    let election = new Election(generalCongres, false);
+    let election = new Election(generalCongres, false, eventTracker);
     let winner = election.runElection()
     // winner.printData()
     winners.push(winner);
+    eventTracker.print();
+    eventTracker.reset();
 }
 
-console.log("Winners")
-winners.forEach(winner => winner.printData())
+// console.log("Winners")
+// winners.forEach(winner => winner.printData())
 
 let family_ids = winners.map(x => parseInt(x.$Family.$Id.toString()));
 
@@ -33,7 +38,7 @@ for (const num of family_ids) {
   counts[num] = counts[num] ? counts[num] + 1 : 1;
 }
 
-console.log(counts);
+// console.log(counts);
 
 generalCongres.Families
 
