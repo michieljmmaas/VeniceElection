@@ -94,9 +94,6 @@ function createFamily(id: Number, total_families: Number): Family {
     }
 
     let size = Math.round(Math.random() * 10);
-    console.log("Id: " + id + " - Size: " + size);
-
-
     return new Family(id, family_relations, size);
 }
 

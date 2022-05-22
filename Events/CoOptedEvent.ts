@@ -12,6 +12,9 @@ export class CoOptEvent implements ElectionEvent {
         this.person = person;
         this.step = step;
 	}
+    setStep(step: number): void {
+        this.step = step;
+    }
     print(): void {
         console.log("Type: " + this.getName());
         this.person.printData();
