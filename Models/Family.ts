@@ -13,13 +13,17 @@ export interface FamilyRelation {
 export class Family {
     private Id: Number;
     private FamiliyRelations: Map<Number, FamilyRelation>;
-
-	constructor($Id: Number, $FamiliyRelations: Map<Number, FamilyRelation>) {
+    private Size: Number;
+   
+	constructor($Id: Number, $FamiliyRelations: Map<Number, FamilyRelation>, $Size: Number) {
 		this.Id = $Id;
 		this.FamiliyRelations = $FamiliyRelations;
+        this.Size = $Size;
 	}
 
-
+    public get $Size(): Number {
+        return this.Size;
+    }
 
     /**
      * Getter $Id

@@ -1,3 +1,4 @@
+import { Family } from './Models/Family';
 import { Election } from "./Election/Election";
 import { Person } from "./Models/Person";
 import { createGeneralCongres } from "./Setup/CongresGenerator";
@@ -23,6 +24,29 @@ for (let i = 0; i < 25; i++) {
 
 console.log("Winners")
 winners.forEach(winner => winner.printData())
+
+let family_ids = winners.map(x => parseInt(x.$Family.$Id.toString()));
+
+const counts: any = {};
+
+for (const num of family_ids) {
+  counts[num] = counts[num] ? counts[num] + 1 : 1;
+}
+
+console.log(counts);
+
+generalCongres.Families
+
+
+// const groupByCategory = winners.reduce((group: , person) => {
+//     const Family = person.$Family;
+//     let id = Family.$Id.toString();
+//     group[id] = group[id] ?? [];
+//     group[id].push(person);
+//     return group;
+//   }, {});
+
+// console.log(groupByCategory);
 
 
 // https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Doge

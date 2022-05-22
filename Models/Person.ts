@@ -26,8 +26,6 @@ export class Person {
 		return this.Id;
 	}
 
-
-
     /**
      * Getter $Competence
      * @return {Number}
