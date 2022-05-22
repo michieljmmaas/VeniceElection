@@ -11,7 +11,7 @@ import { Congres } from "../Models/Congres";
 
 // Genes is Family. Of een Family over het algemeen slimmer is
 
-
+// Their intention was to minimize the influence of individual great families,
 
 export function createGeneralCongres(number_of_people: Number, number_of_families: Number): Congres {
     let families = createFamilies(number_of_families);
