@@ -1,4 +1,4 @@
-import { growCongresWithMostCompetentToNumber, selectRandomlyAndRemoveFamily, thinSelectedRandomlyToNumber } from "./ElectionProcess";
+import { growCongresWithMostCompetentToNumber, selectOnePersonFromFamily, thinSelectedRandomlyToNumber } from "./ElectionProcess";
 import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
 import { EventTracker } from "../Events/EventTracker";
@@ -22,8 +22,11 @@ export class Election {
     // TODO Add Data Writing
     runElection(): Person {
         // console.log("1: 500 > 30 (Random) / Faniliy Members Leave Too // TODO")
-        // selectRandomlyAndRemoveFamily(this.congres, 30)
+        selectOnePersonFromFamily(this.congres, 30)
         // this.printData();
+
+        // 30 differnt people from the 30 families
+
 
         // console.log("2: 30 > 9 (Random)")
         thinSelectedRandomlyToNumber(this.congres, this.eventTracker, 9)

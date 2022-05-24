@@ -1,3 +1,4 @@
+import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
 
 export function selectNumberRandomly(people: Person[], amount: number): [Person[], Person[]]  {
@@ -13,6 +14,13 @@ export function shuffle(array: any[]) {
         [array[i - 1], array[j]] = [array[j], array[i - 1]];
     }
 }
+
+export function cooptPerson(congres: Congres): Person {
+    let elligible = congres.getElligiblePeople();
+    let most_comptent = elligible.sort((a, b) => (a.$Competence < b.$Competence) ? 1 : -1)
+    return most_comptent.shift();
+}
+
 
 export function selectMostCompetent(people: Person[], amount: number): [Person[], Person[]]  {
     people.sort((a, b) => (a.$Competence < b.$Competence) ? 1 : -1)

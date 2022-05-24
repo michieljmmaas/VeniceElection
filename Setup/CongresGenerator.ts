@@ -21,16 +21,14 @@ export function createGeneralCongres(number_of_people: Number, number_of_familie
 
 const counts: any = {};
 
-for (const num of family_ids) {
-  counts[num] = counts[num] ? counts[num] + 1 : 1;
-}
+// for (const num of family_ids) {
+//   counts[num] = counts[num] ? counts[num] + 1 : 1;
+// }
 
-console.log(counts);
-
-
+// console.log(counts);
 
 
-    return new Congres(people, [], families);
+    return new Congres([], people, families);
 }
 
 

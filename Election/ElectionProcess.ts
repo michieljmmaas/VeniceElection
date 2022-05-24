@@ -3,31 +3,32 @@ import { KickRandomEvent } from './../Events/KickRandomEvent';
 import { EventTracker } from "../Events/EventTracker";
 import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
-import { selectMostCompetent, selectNumberRandomly, shuffle } from "./Selection";
+import { cooptPerson, selectMostCompetent, selectNumberRandomly, shuffle } from "./Selection";
 
 
 
 // TODO Add check to enable
-export function selectRandomlyAndRemoveFamily(congres: Congres, amount: number) {
-    let clonedPeople: Person[] = [...congres.selectedPeople];
-    shuffle(clonedPeople);
+export function selectOnePersonFromFamily(congres: Congres, amount: number) {
+    let not_selected_people: Person[] = [...congres.notSelectedPeople];
+
+    let families = not_selected_people.map(person => person.$Family.$Id);
+    shuffle(families);
+
+    let selected_families = families.slice(0, amount);
 
     let selected_people: Person[] = [];
 
-    for (let i = 0; i < amount; i++) {
-        let selected_person = clonedPeople.pop();
-        if (selected_person instanceof Person) {
-            selected_people.push(selected_person);
-            clonedPeople = clonedPeople.filter(person => person!.$Family.$Id !== selected_person!.$Family.$Id);
-        }
-    }
+    selected_families.forEach(family_id => {
+        let person = not_selected_people.find(person => person.$Family.$Id === family_id);
+        selected_people.push(person);
+    })
 
-    let selected_ids = selected_people.map(person => person!.$Id);
+    let selected_person_ids = selected_people.map(person => person.$Id);
 
-    let not_selected_people: Person[] = congres.selectedPeople.filter(person => !selected_ids.includes(person.$Id))
+    let filtered_not_selected = not_selected_people.filter(person => selected_person_ids.includes(person.$Id) === false);
 
     congres.selectedPeople = selected_people;
-    congres.notSelectedPeople = not_selected_people;
+    congres.notSelectedPeople = filtered_not_selected;
 }
 
 
@@ -42,6 +43,7 @@ export function thinSelectedRandomlyToNumber(congres: Congres, eventTracker: Eve
 
 
     congres.notSelectedPeople = congres.notSelectedPeople.concat(not_selected_people)
+    congres.selectedPeople = congres.selectedPeople.concat(selected_people)
 }
 
 // Add Family Bias
@@ -50,12 +52,10 @@ export function growCongresWithMostCompetentToNumber(congres: Congres, eventTrac
     let currentAmountSelected = congres.selectedPeople.length;
     let additionalPeopleNeeded = amount - currentAmountSelected;
 
-    let [most_compentent, not_selected_people] = selectMostCompetent(congres.notSelectedPeople, additionalPeopleNeeded);
-
-    most_compentent.forEach(person => {
-        let coopt_event = new CoOptEvent(person, 0)
+    for (let i = 0; i < additionalPeopleNeeded; i++) {
+        let new_person = cooptPerson(congres);
+        let coopt_event = new CoOptEvent(new_person, 0)
         eventTracker.addEvent(coopt_event);
-    })
-
-    congres.selectedPeople = congres.selectedPeople.concat(most_compentent);
+        congres.selectPerson(new_person);
+    }
 }

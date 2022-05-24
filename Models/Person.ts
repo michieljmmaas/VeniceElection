@@ -17,7 +17,6 @@ export class Person {
 		this.Family = $Family;
 	}
 
-
     /**
      * Getter $Id
      * @return {Number}

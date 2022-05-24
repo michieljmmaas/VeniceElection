@@ -3,11 +3,13 @@ import { Family } from './Models/Family';
 import { Election } from "./Election/Election";
 import { Person } from "./Models/Person";
 import { createGeneralCongres } from "./Setup/CongresGenerator";
+import { readFileSync, writeFileSync, promises as fsPromises } from 'fs';
+import { join } from 'path';
 
 
-let generalCongres = createGeneralCongres(480, 12);
+let generalCongres = createGeneralCongres(2600, 101);
 
-const most_compentent = generalCongres.selectedPeople.reduce(function (prev, current) {
+const most_compentent = generalCongres.notSelectedPeople.reduce(function (prev, current) {
     return (prev.$Competence > current.$Competence) ? prev : current
 }) //returns object
 
@@ -30,18 +32,34 @@ for (let i = 0; i < 25; i++) {
 // console.log("Winners")
 // winners.forEach(winner => winner.printData())
 
-let family_ids = winners.map(x => parseInt(x.$Family.$Id.toString()));
+let formatted_data = winners.map(winner => {
+  return {
+    id: winner.$Id,
+    competence: winner.$Competence,
+    family: winner.$Family.$Id
+  }
+})
 
-const counts: any = {};
+let data = JSON.stringify(formatted_data);
 
-for (const num of family_ids) {
-  counts[num] = counts[num] ? counts[num] + 1 : 1;
+
+function syncWriteFile(filename: string, data: any) {
+  /**
+   * flags:
+   *  - w = Open file for reading and writing. File is created if not exists
+   *  - a+ = Open file for reading and appending. The file is created if not exists
+   */
+  writeFileSync(join(__dirname, filename), data, {
+    flag: 'w',
+  });
+
+  const contents = readFileSync(join(__dirname, filename), 'utf-8');
+
+  return contents;
 }
 
-// console.log(counts);
 
-generalCongres.Families
-
+syncWriteFile('./Data/example.json', data);
 
 // const groupByCategory = winners.reduce((group: , person) => {
 //     const Family = person.$Family;
