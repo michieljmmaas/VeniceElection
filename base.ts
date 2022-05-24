@@ -1,5 +1,4 @@
 import { EventTracker } from './Events/EventTracker';
-import { Family } from './Models/Family';
 import { Election } from "./Election/Election";
 import { Person } from "./Models/Person";
 import { createGeneralCongres } from "./Setup/CongresGenerator";
@@ -11,7 +10,7 @@ let generalCongres = createGeneralCongres(2600, 101);
 
 
 let people = generalCongres.notSelectedPeople;
-let vv = people.map(winner => {
+let all = people.map(winner => {
   return {
     id: winner.$Id,
     competence: winner.$Competence,
@@ -19,18 +18,6 @@ let vv = people.map(winner => {
   }
 })
 
-let vv_data = JSON.stringify(vv);
-
-
-syncWriteFile('./Data/vv_data.json', vv_data);
-
-
-const most_compentent = generalCongres.notSelectedPeople.reduce(function (prev, current) {
-    return (prev.$Competence > current.$Competence) ? prev : current
-}) //returns object
-
-// console.log("Most Compentent")
-// most_compentent.printData();
 
 let winners: Person[] = [];
 
@@ -39,57 +26,13 @@ let eventTracker = new EventTracker();
 for (let i = 0; i < 100; i++) {
     let election = new Election(generalCongres, false, eventTracker);
     let winner = election.runElection()
-    // winner.printData()
     winners.push(winner);
     eventTracker.print();
     eventTracker.reset();
 }
 
-// console.log("Winners")
-// winners.forEach(winner => winner.printData())
-
-let formatted_data = winners.map(winner => {
-  return {
-    id: winner.$Id,
-    competence: winner.$Competence,
-    family: winner.$Family.$Id
-  }
-})
-
-// let most_comptent = formatted_data.sort((a, b) => (a.competence > b.competence) ? 1 : -1)
-
-const uniqueIds: any[] = [];
-
-// const unique = formatted_data.filter(element => {
-//   const isDuplicate = uniqueIds.includes(element.id);
-
-//   if (!isDuplicate) {
-//     uniqueIds.push(element.id);
-
-//     return true;
-//   }
-
-//   return false;
-// });
-
-let family_count: any[] = [];
-
-formatted_data.forEach(person => {
-  family_count.push({family: person.family});
-})
-
-
-let data = JSON.stringify(formatted_data);
-
-
-let fam_data = JSON.stringify(family_count);
 
 function syncWriteFile(filename: string, data: any) {
-  /**
-   * flags:
-   *  - w = Open file for reading and writing. File is created if not exists
-   *  - a+ = Open file for reading and appending. The file is created if not exists
-   */
   writeFileSync(join(__dirname, filename), data, {
     flag: 'w',
   });
@@ -99,55 +42,17 @@ function syncWriteFile(filename: string, data: any) {
   return contents;
 }
 
-
-syncWriteFile('./Data/example.json', data);
-
-
-
-// const groupByCategory = winners.reduce((group: , person) => {
-//     const Family = person.$Family;
-//     let id = Family.$Id.toString();
-//     group[id] = group[id] ?? [];
-//     group[id].push(person);
-//     return group;
-//   }, {});
-
-// console.log(groupByCategory);
+let all_data = JSON.stringify(all);
+syncWriteFile('./Data/all_data.json', all_data);
 
 
-// https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Doge
-// TODO Kijken procedural generator
-// TODO Verschillende verkiezingen strategies
-// TODO Keep track of actions
-// Wie wordt eruit gestuurd
+let formatted_data = winners.map(winner => {
+  return {
+    id: winner.$Id,
+    competence: winner.$Competence,
+    family: winner.$Family.$Id
+  }
+})
+let winner_data = JSON.stringify(formatted_data);
+syncWriteFile('./Data/winner_data.json', winner_data);
 
-// TODO -> Kijken naar Visualisatie
-// TODO -> Haat/Liefde voor Visualisatie
-// TODO -> Kijken naar Gilden
-// TODO -> Parameters meegeven voor opties
-// TODO -> Genen voor Families (Meer liefde, meer Charisma / Meer Competence / Bouw naar MVP)
-
-// Visualisatie
-// Meest Capabele
-// Meerdere keren runnen en zien wie het meeste kans hebben
-// Kijken wat het grootste probleem is
-// Tevrendeheids score?
-
-
-///// Kijken of ik kan tunen
-// Traits van Families (Kleur / Logo)
-// -> Size
-// -> Values
-//      -> Charisma / Family / Competence
-// -> Bonden met andere families
-// - > Gilden van Families
-// ===
-// Family Member
-// -> Familie
-// -> Charisma score
-// -> Competence score
-
-
-// Ik wil weten
-// -> Verschil met de slimste?
-// > Is het belangrijk om een grote familie te hebben?

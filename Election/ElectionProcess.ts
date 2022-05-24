@@ -3,7 +3,7 @@ import { KickRandomEvent } from './../Events/KickRandomEvent';
 import { EventTracker } from "../Events/EventTracker";
 import { Congres } from "../Models/Congres";
 import { Person } from "../Models/Person";
-import { cooptPerson, selectMostCompetent, selectNumberRandomly, shuffle } from "./Selection";
+import { cooptPerson, selectNumberRandomly, shuffle } from "./Selection";
 
 
 

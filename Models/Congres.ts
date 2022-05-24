@@ -23,8 +23,6 @@ getElligiblePeople(): Person[] {
 }
 
 
-
-
    getSelectedFamilyIds() {
     return this.selectedPeople.map(person => person.$Family.$Id);
    }

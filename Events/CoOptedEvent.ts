@@ -5,9 +5,6 @@ export class CoOptEvent implements ElectionEvent {
     private person: Person;
     private step: number;
 
-    // Voted By
-    
-   
 	constructor(person: Person, step: number) {
         this.person = person;
         this.step = step;
@@ -17,7 +14,6 @@ export class CoOptEvent implements ElectionEvent {
     }
     print(): void {
         console.log("Type: " + this.getName());
-        this.person.printData();
     }
     
     getPerson(): Person {

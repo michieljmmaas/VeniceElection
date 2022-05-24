@@ -5,8 +5,6 @@ export class KickRandomEvent implements ElectionEvent {
     private person: Person;
     private step: number;
     
-   // Define step 
-
 	constructor(person: Person, step: number) {
         this.person = person;
         this.step = step;
@@ -16,7 +14,6 @@ export class KickRandomEvent implements ElectionEvent {
     }
     print(): void {
         console.log("Type: " + this.getName());
-        this.person.printData();
     }
     getPerson(): Person {
         return this.person;
