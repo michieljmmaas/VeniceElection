@@ -75,7 +75,8 @@ export class Election {
         this.eventTracker.endStep();
         this.printData();
 
-        return this.congres.selectedPeople[0];
+        let most_comptent = this.congres.selectedPeople.sort((a, b) => (a.$Competence < b.$Competence) ? 1 : -1)
+        return most_comptent.shift();
     }
 
     // TODO Write Data to file

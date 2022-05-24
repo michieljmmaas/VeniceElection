@@ -9,6 +9,22 @@ import { join } from 'path';
 
 let generalCongres = createGeneralCongres(2600, 101);
 
+
+let people = generalCongres.notSelectedPeople;
+let vv = people.map(winner => {
+  return {
+    id: winner.$Id,
+    competence: winner.$Competence,
+    family: winner.$Family.$Id
+  }
+})
+
+let vv_data = JSON.stringify(vv);
+
+
+syncWriteFile('./Data/vv_data.json', vv_data);
+
+
 const most_compentent = generalCongres.notSelectedPeople.reduce(function (prev, current) {
     return (prev.$Competence > current.$Competence) ? prev : current
 }) //returns object
@@ -20,7 +36,7 @@ let winners: Person[] = [];
 
 let eventTracker = new EventTracker();
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 100; i++) {
     let election = new Election(generalCongres, false, eventTracker);
     let winner = election.runElection()
     // winner.printData()
@@ -40,8 +56,33 @@ let formatted_data = winners.map(winner => {
   }
 })
 
+// let most_comptent = formatted_data.sort((a, b) => (a.competence > b.competence) ? 1 : -1)
+
+const uniqueIds: any[] = [];
+
+// const unique = formatted_data.filter(element => {
+//   const isDuplicate = uniqueIds.includes(element.id);
+
+//   if (!isDuplicate) {
+//     uniqueIds.push(element.id);
+
+//     return true;
+//   }
+
+//   return false;
+// });
+
+let family_count: any[] = [];
+
+formatted_data.forEach(person => {
+  family_count.push({family: person.family});
+})
+
+
 let data = JSON.stringify(formatted_data);
 
+
+let fam_data = JSON.stringify(family_count);
 
 function syncWriteFile(filename: string, data: any) {
   /**
@@ -60,6 +101,8 @@ function syncWriteFile(filename: string, data: any) {
 
 
 syncWriteFile('./Data/example.json', data);
+
+
 
 // const groupByCategory = winners.reduce((group: , person) => {
 //     const Family = person.$Family;
@@ -103,3 +146,8 @@ syncWriteFile('./Data/example.json', data);
 // -> Familie
 // -> Charisma score
 // -> Competence score
+
+
+// Ik wil weten
+// -> Verschil met de slimste?
+// > Is het belangrijk om een grote familie te hebben?

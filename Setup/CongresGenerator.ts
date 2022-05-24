@@ -43,10 +43,18 @@ function createPeople(number_of_people: Number, families: Family[]): Person[] {
         }
     });
 
-    for (let i = 0; i < number_of_people; i++) {
+    let id = 0;
+
+    families.forEach(fam => {
+        people.push(createPerson(id, fam));
+        id++;
+    })
+    
+    for (let i = 0; i < number_of_people.valueOf() - families.length; i++) {
         let family_id = Math.floor(Math.random() * family_pool.length);
         let random_family = family_pool[family_id];
-        people.push(createPerson(i, random_family));
+        people.push(createPerson(id, random_family));
+        id++;
     }
 
     return people;
